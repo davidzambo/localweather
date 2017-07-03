@@ -137,10 +137,10 @@ $(document).ready(function(){
           var kelvin = 273.15;
           var celsiusValue = kelvinValue - kelvin;
 
-          $('#temperatureFahrenheit').html(celsiusValue.toFixed(1)+"<i class='wi wi-celsius'></i>");
+          $('#temperatureFahrenheit').html(celsiusValue.toFixed(1)+"<i class='primary-degree wi wi-celsius'></i><i class='secondary-degree wi wi-fahrenheit'></i>");
 
           var fahrenheitValue = (celsiusValue)*9/5+32;
-          $('#temperatureCelsius').html(fahrenheitValue.toFixed(1)+"<i class='wi wi-fahrenheit'></i>").hide();
+          $('#temperatureCelsius').html(fahrenheitValue.toFixed(1)+"<i class='primary-degree wi wi-fahrenheit'></i><i class='secondary-degree wi wi-celsius'>").hide();
 
 
         //Changing main weather icon
@@ -209,7 +209,7 @@ $(document).ready(function(){
   });
   //Changing the F to C
   $('.temperature').on('click', function(){
-    $('.temperature').toggle();
+    $('.temperature').toggle().addClass('animated flipInX');
   });
 
 

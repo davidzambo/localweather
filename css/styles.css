@@ -57,10 +57,22 @@
       2px 2px 3px #fff,
       -2px +2px 3px #fff;
   }
-  .temperature i{position: relative; top: -10px;}
+  .primary-degree{position: relative; top: -10px;}
 
   #temperature, #pressureAndHumidity, #sunriseAndSunset {
     padding: 1.6em 0;
+  }
+
+  .temperature:hover{
+    cursor: pointer;
+  }
+
+  .secondary-degree{
+    font-weight: bold;
+    position:relative;
+    bottom: -10px;
+    left: -10px;
+    opacity: 0.3;
   }
 
   #loadingMessage{
