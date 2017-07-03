@@ -100,8 +100,10 @@
 
 
         </div>
+
       </div>
     </div>
+    <footer class="copyright">Written and coded by <a href="https://www.dcmf.hu"><img class="dcmf-logo" src="images/dcmf-letters.png" alt="David's Code ManuFactory logo"/></a></footer>
   </body>
 
 <script>
