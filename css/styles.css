@@ -1,0 +1,43 @@
+@media (max-width : 109px){
+  #country{font-size: 20px!important;}
+}
+@media (min-width : 110px){
+  *{border: 1px solid black;}
+  html{position: relative; min-height: 100%}
+  body{
+    font-family: 'Oswald', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  #country{font-size: 3em;}
+  #city{font-size: 5em; line-height: 2em;}
+  #country, #city{text-shadow: 1px 1px 0 #fff;}
+  .temperature, .humidity {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+    text-shadow: 2px 2px 0 #000;
+    color: white;
+  }
+  .pressure{
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    line-height: 2em;
+    text-shadow: 2px 2px 0 #000;
+    color: white;
+  }
+
+  #weather-main-icon, #humidity-icon, #barometer-icon, #temp-min-icon, #temp-max-icon, #temp-icon, #sunset-icon, #sunrise-icon{
+    font-size: 2rem;
+    padding-top: 0!important;
+    text-shadow:
+      -2px -2px 3px #fff,
+      2px -2px 3px #fff,
+      2px 2px 3px #fff,
+      -2px +2px 3px #fff;
+  }
+  .temperature i{position: relative; top: -10px;}
+
+}
