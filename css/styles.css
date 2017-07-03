@@ -2,7 +2,7 @@
   #country{font-size: 20px!important;}
 }
 @media (min-width : 110px){
-  *{border: 1px solid black;}
+  /**{border: 1px solid black;}*/
   html{position: relative; min-height: 100%}
   body{
     font-family: 'Oswald', sans-serif;
@@ -10,26 +10,45 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+  .content{padding-top: 2em;}
   #country{font-size: 3em;}
-  #city{font-size: 5em; line-height: 2em;}
+  #city{font-size: 5em; line-height: 2em; text-align: right;}
   #country, #city{text-shadow: 1px 1px 0 #fff;}
-  .temperature, .humidity {
+  .temperature, .humidity, .sunset-time, .sunrise-time, #daytime-value{
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
     font-size: 2em;
     text-shadow: 2px 2px 0 #000;
     color: white;
   }
+  .pressure-container{
+    padding:0!important;
+    display: flex;
+    text-align: center;
+  }
   .pressure{
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 1.5em;
     line-height: 2em;
     text-shadow: 2px 2px 0 #000;
     color: white;
+    margin: 0 auto;
+    padding: 0;
+    align-self: flex-end;
+
+  }
+  #weather-main-icon {
+    font-size: 6em;
+    padding-top: 0!important;
+    text-shadow:
+      -2px -2px 3px #fff,
+      2px -2px 3px #fff,
+      2px 2px 3px #fff,
+      -2px +2px 3px #fff;
   }
 
-  #weather-main-icon, #humidity-icon, #barometer-icon, #temp-min-icon, #temp-max-icon, #temp-icon, #sunset-icon, #sunrise-icon{
+  #humidity-icon, #barometer-icon, #temp-icon, #sunset-icon, #sunrise-icon, #daytime-icon{
     font-size: 2rem;
     padding-top: 0!important;
     text-shadow:
@@ -39,5 +58,20 @@
       -2px +2px 3px #fff;
   }
   .temperature i{position: relative; top: -10px;}
+
+  #temperature, #pressureAndHumidity, #sunriseAndSunset {
+    padding: 2em 0;
+  }
+
+  #loadingMessage{
+    width: 100%;
+    min-height: 100%;
+    z-index: 1000;
+    color: black;
+    background-color: white;
+    text-align: center;
+    padding: 30% 45% 30% 45%;
+    margin:auto;
+  }
 
 }
