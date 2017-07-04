@@ -1,7 +1,14 @@
-@media (max-width : 109px){
-  #country{font-size: 20px!important;}
+@media (min-width : 700px){
+  #weather-main-icon {font-size:7em!important;}
+  #city{font-size: 5em!important;}
 }
-@media (min-width : 110px){
+
+
+@media (min-width : 479px){
+  #weather-main-icon {font-size:4em!important;}
+  #city{font-size: 4em!important;}
+}
+@media (min-width : 300px){
   /**{border: 1px solid black;}*/
   html{position: relative; min-height: 100%}
   body{
@@ -12,7 +19,7 @@
   }
   .content{padding-top: 2em; padding-bottom: 1rem;}
   #country{font-size: 3em;}
-  #city{font-size: 5em; line-height: 2em; text-align: right;}
+  #city{font-size: 2em; line-height: 2em; text-align: right;}
   #country, #city{text-shadow: 1px 1px 0 #fff;}
   .temperature, .humidity, .sunset-time, .sunrise-time, #daytime-value{
     font-family: 'Oswald', sans-serif;
@@ -21,7 +28,7 @@
     text-shadow: 2px 2px 0 #000;
     color: white;
   }
-  .pressure-container{
+  .pressure-container, .city-container{
     padding:0!important;
     display: flex;
     text-align: center;
@@ -36,10 +43,12 @@
     margin: 0 auto;
     padding: 0;
     align-self: flex-end;
-
+  }
+  .city-container>div{
+    align-self:center;
   }
   #weather-main-icon {
-    font-size: 6em;
+    font-size: 3em;
     padding-top: 0!important;
     text-shadow:
       -2px -2px 3px #fff,
@@ -71,7 +80,7 @@
     font-weight: bold;
     position:relative;
     bottom: -10px;
-    left: -10px;
+    left: -0.5em;
     opacity: 0.3;
   }
 
