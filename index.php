@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Local Weather application</title>
 
+    <link rel="shortcut icon" href="https://www.dcmf.hu/favicon.jpg" type="image/x-icon"/> 
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
@@ -32,13 +34,16 @@
     <link rel="stylesheet" href="css/animate.css">
   </head>
   <body>
-    <div id="loadingMessage" style="display:none">
-      <i class="fa fa-spinner fa-pulse fa-4x"></i><br><br>
+
+    <div class="container-fluid" id="loadingMessage">
+      <h1><i class="fa fa-spinner fa-pulse fa-2x"></i>
+</h1>
       <span class="sr-only">Loading...</span>
-      <span>Loading...</span>
+      <h3>Loading...</h3>
     </div>
+    
     <div class="container-fluid">
-      <div class="row content">
+      <div class="row content" style="display:none">
         <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
 
           <div class="row">
@@ -107,128 +112,10 @@
 
       </div>
     </div>
-    <footer class="copyright">Written and coded by <a href="https://www.dcmf.hu"><img class="dcmf-logo" src="images/dcmf-letters.png" alt="David's Code ManuFactory logo"/></a></footer>
+    <footer class="copyright">Written and coded by <a href="https://www.dcmf.hu"><img class="dcmf-logo" src="images/dcmf-letters.png" alt="David's Code ManuFactory logo"/></a>
+    </footer>
   </body>
 
-<script>
-$(document).ready(function(){
-  $('#loadingMessage').show();
-  $('.content').hide();
-  var city, lat, lon;
+  <script src="js/scripts.js"></script>
 
-  //GET THE COORDINATED BY IP ADDRESS
-  $.ajax({
-    url: 'http://ip-api.com/json',
-    type: 'get',
-    dataType: 'json',
-    success: function(ipJSON){
-      city = ipJSON['city'];
-      lat = ipJSON['lat'];
-      lon = ipJSON['lon'];
-
-      $.ajax({
-        url: 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=09a226cc5591be341cb1a725108c4689',
-        type: 'get',
-        dataType: 'json',
-        success: function(weatherJSON){
-
-        //Determine location
-          $('#country').html(ipJSON.country);
-          $('#city').html(weatherJSON.name);
-
-        //Determine the temperature
-          var kelvinValue = weatherJSON.main.temp;
-          var kelvin = 273.15;
-          var celsiusValue = kelvinValue - kelvin;
-
-          $('#temperatureFahrenheit').html(celsiusValue.toFixed(1)+"<i class='primary-degree wi wi-celsius'></i><i class='secondary-degree wi wi-fahrenheit'></i>");
-
-          var fahrenheitValue = (celsiusValue)*9/5+32;
-          $('#temperatureCelsius').html(fahrenheitValue.toFixed(1)+"<i class='primary-degree wi wi-fahrenheit'></i><i class='secondary-degree wi wi-celsius'>").hide();
-
-
-        //Changing main weather icon
-          var weatherIcon;
-          var weatherId = weatherJSON.weather[0]['id'];
-          var weatherIdGroup = Math.floor(weatherId/100);
-
-          switch (true){
-            case (weatherId > 199 && weatherId < 233):
-                  weatherIcon = "<i class='wi wi-thunderstorm'></i>";
-                  $('body').css('background-image', 'url(images/cloud-cloudy.jpg)');
-                  break;
-            case (weatherId > 299 && weatherId < 323):
-                  weatherIcon = "<i class='wi wi-showers'></i>";
-                  break;
-            case (weatherId > 499 && weatherId < 533):
-                  weatherIcon = "<i class='wi wi-rain'></i>";
-                  $('body').css('background-image', 'url(images/rainy.jpg)');
-                  break;
-            case (weatherId > 599 && weatherId < 623):
-                  weatherIcon = "<i class='wi wi-snow'></i>";
-                  $('body').css('background-image', 'url(images/snow.jpg)');
-                  break;
-            case (weatherId > 699 && weatherId < 782):
-                  weatherIcon = "<i class='wi wi-fog'></i>";
-                  $('body').css('background-image', 'url(images/foggy.jpg)');
-                  break;
-
-            case (weatherId === 800):
-                  weatherIcon = "<i class='wi wi-day-sunny'></i>";
-                  if (celsiusValue > 35) {
-                    $('body').css('background-image', 'url(images/desert.jpg)');
-                  } else {
-                    $('body').css('background-image', 'url(images/cold-sunny.jpg)');
-                  }
-                  break;
-            case (weatherId > 800 && weatherId < 805):
-                  weatherIcon = "<i class='wi wi-cloud'></i>";
-                  $('body').css('background-image', 'url(images/warm-cloudy.jpg)');
-                  break;
-            default:
-                  weatherIcon = "<i class='wi wi-na'></i>";
-                  $('body').css('background-color', 'white');
-          }
-
-          $('#weather-main-icon').html(weatherIcon);
-        //Get and set daytime
-          function addZero(number){
-            if (number < 10){
-              return "0"+number;
-            }
-            return number;
-          }
-          var daytime = new Date(weatherJSON.dt*1000);
-          $('#daytime-value').html(addZero(daytime.getHours())+":"+addZero(daytime.getMinutes()));
-
-          $('#humidity-value').html(weatherJSON.main.humidity+" %");
-          $('#pressure-value').html(weatherJSON.main.pressure+" Pa");
-
-        //Get and set sunrise and sunset time
-          var sunrise = new Date(weatherJSON.sys.sunrise*1000);
-          var sunset = new Date(weatherJSON.sys.sunset*1000);
-
-          $('#sunrise-time').html(addZero(sunrise.getHours())+":"+addZero(sunrise.getMinutes()));
-          $('#sunset-time').html(addZero(sunset.getHours())+":"+addZero(sunset.getMinutes()));
-
-        //Set night background-image
-          if (daytime > sunset){
-            $('body').css('background-image', 'url(images/night.jpg)');
-          }
-
-          $('#loadingMessage').hide().addClass('animated fadeOut');
-          $('.content').show().addClass('animated fadeInDownBig');
-        }
-      });
-    }
-  });
-  //Changing the F to C
-  $('.temperature').on('click', function(){
-    $('.temperature').toggle().addClass('animated flipInX');
-  });
-
-
-
-});
-</script>
 </html>

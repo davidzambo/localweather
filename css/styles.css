@@ -10,7 +10,7 @@
 }
 @media (min-width : 300px){
   /**{border: 1px solid black;}*/
-  html{position: relative; min-height: 100%}
+  html{position: relative; height: 100%}
   body{
     font-family: 'Oswald', sans-serif;
     background-size: cover;
@@ -85,14 +85,21 @@
   }
 
   #loadingMessage{
+    position: absolute;
     width: 100%;
     min-height: 100%;
     z-index: 1000;
-    color: black;
-    background-color: white;
+    color: #CECECE;
+    background-color: #333;
     text-align: center;
-    padding: 30% 45% 30% 45%;
     margin:auto;
+    display
+  }
+  #loadingMessage h1{
+    display: block;
+    margin-top: 20%;
+    margin-bottom: 2rem;
+    overflow: none;
   }
 
   .copyright {
